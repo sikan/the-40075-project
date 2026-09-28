@@ -1,0 +1,83 @@
+{
+  "result": {
+    "calories_total": 582,
+    "comments": null,
+    "date": "2015-08-31 21:28:00",
+    "date_utc": null,
+    "distance": 10000,
+    "id": 26650603,
+    "metadata": {
+      "data": {
+        "client_version": "7.00.6",
+        "device": "x86_64",
+        "device_os": "osx",
+        "device_os_version": "10.11",
+        "firmware_version": "0",
+        "hr_type": null,
+        "other": null,
+        "pm_version": 0,
+        "serial_number": ""
+      }
+    },
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "Concept2 Utility",
+    "stroke_data": false,
+    "stroke_rate": 24,
+    "time": 27842,
+    "time_formatted": "46:24.2",
+    "timezone": null,
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout": {
+      "splits": [
+        {
+          "calories_total": 104,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 21,
+          "time": 6526,
+          "type": "distance"
+        },
+        {
+          "calories_total": 120,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 25,
+          "time": 5297,
+          "type": "distance"
+        },
+        {
+          "calories_total": 117,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 24,
+          "time": 5477,
+          "type": "distance"
+        },
+        {
+          "calories_total": 119,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 25,
+          "time": 5353,
+          "type": "distance"
+        },
+        {
+          "calories_total": 122,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 26,
+          "time": 5190,
+          "type": "distance"
+        }
+      ]
+    },
+    "workout_type": "FixedDistanceSplits"
+  },
+  "schema_version": 1,
+  "stroke_status": "unavailable"
+}

@@ -1,0 +1,7 @@
+{
+  "title": "row",
+  "goal_meters": 40075000,
+  "rowing_types": ["rower", "dynamic", "slides"],
+  "include_rest_distance": true,
+  "publish_comments": false
+}

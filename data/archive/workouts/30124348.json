@@ -1,0 +1,97 @@
+{
+  "result": {
+    "calories_total": 595,
+    "comments": null,
+    "date": "2017-06-26 22:39:00",
+    "date_utc": null,
+    "distance": 10000,
+    "drag_factor": 143,
+    "heart_rate": {
+      "average": 141
+    },
+    "id": 30124348,
+    "metadata": {
+      "data": {
+        "client_version": "7.06.15",
+        "device": "x86_64",
+        "device_os": "osx",
+        "device_os_version": "10.12",
+        "firmware_version": "0",
+        "hr_type": null,
+        "other": null,
+        "pm_version": 0,
+        "serial_number": ""
+      }
+    },
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "Concept2 Utility",
+    "stroke_data": false,
+    "stroke_rate": 29,
+    "time": 26690,
+    "time_formatted": "44:29.0",
+    "timezone": null,
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout": {
+      "splits": [
+        {
+          "calories_total": 120,
+          "distance": 2000,
+          "heart_rate": {
+            "ending": 144
+          },
+          "stroke_rate": 29,
+          "time": 5282,
+          "type": "distance"
+        },
+        {
+          "calories_total": 119,
+          "distance": 2000,
+          "heart_rate": {
+            "ending": 135
+          },
+          "stroke_rate": 29,
+          "time": 5338,
+          "type": "distance"
+        },
+        {
+          "calories_total": 119,
+          "distance": 2000,
+          "heart_rate": {
+            "ending": 139
+          },
+          "stroke_rate": 30,
+          "time": 5369,
+          "type": "distance"
+        },
+        {
+          "calories_total": 119,
+          "distance": 2000,
+          "heart_rate": {
+            "ending": 144
+          },
+          "stroke_rate": 30,
+          "time": 5329,
+          "type": "distance"
+        },
+        {
+          "calories_total": 118,
+          "distance": 2000,
+          "heart_rate": {
+            "ending": 147
+          },
+          "stroke_rate": 30,
+          "time": 5372,
+          "type": "distance"
+        }
+      ]
+    },
+    "workout_type": "FixedDistanceSplits"
+  },
+  "schema_version": 1,
+  "stroke_status": "unavailable"
+}

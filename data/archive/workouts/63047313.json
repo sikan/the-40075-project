@@ -1,0 +1,175 @@
+{
+  "result": {
+    "calories_total": 844,
+    "comments": null,
+    "date": "2022-04-11 12:20:00",
+    "date_utc": "2022-04-11 04:20:00",
+    "distance": 14022,
+    "drag_factor": 136,
+    "id": 63047313,
+    "metadata": {
+      "data": {
+        "client_version": "V1.4.4 (0)",
+        "device": "iPhone 6 Plus",
+        "device_os": "iOS",
+        "device_os_version": "12.5.5",
+        "firmware_version": "32.0",
+        "hr_type": null,
+        "other": null,
+        "pm_version": 5,
+        "serial_number": "430117945"
+      }
+    },
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "ErgData iOS",
+    "stroke_count": 1378,
+    "stroke_data": true,
+    "stroke_rate": 22,
+    "time": 37229,
+    "time_formatted": "1:02:02.9",
+    "timezone": "Asia/Shanghai",
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout": {
+      "splits": [
+        {
+          "calories_total": 69,
+          "distance": 1143,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 22,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 74,
+          "distance": 1186,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 21,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 65,
+          "distance": 1109,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 21,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 75,
+          "distance": 1190,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 21,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 72,
+          "distance": 1170,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 74,
+          "distance": 1183,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 49,
+          "distance": 933,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 22,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 73,
+          "distance": 1180,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 22,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 73,
+          "distance": 1178,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 55,
+          "distance": 1007,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 72,
+          "distance": 1168,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 69,
+          "distance": 1147,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 24,
+          "distance": 428,
+          "heart_rate": {
+            "ending": 0
+          },
+          "stroke_rate": 22,
+          "time": 1229,
+          "type": "time"
+        }
+      ]
+    },
+    "workout_type": "JustRow"
+  },
+  "schema_version": 1,
+  "stroke_status": "available"
+}

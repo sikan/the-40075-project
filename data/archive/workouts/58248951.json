@@ -1,0 +1,58 @@
+{
+  "result": {
+    "calories_total": 60,
+    "comments": null,
+    "date": "2021-11-05 11:45:00",
+    "date_utc": "2021-11-05 03:45:00",
+    "distance": 1021,
+    "drag_factor": 142,
+    "heart_rate": {
+      "average": 158
+    },
+    "id": 58248951,
+    "metadata": {
+      "data": {
+        "client_version": "V1.4.4 (0)",
+        "device": "iPhone 6 Plus",
+        "device_os": "iOS",
+        "device_os_version": "12.5.5",
+        "firmware_version": "31.0",
+        "hr_type": null,
+        "other": null,
+        "pm_version": 5,
+        "serial_number": "430117945"
+      }
+    },
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "ErgData iOS",
+    "stroke_count": 94,
+    "stroke_data": true,
+    "stroke_rate": 20,
+    "time": 8312,
+    "time_formatted": "13:51.2",
+    "timezone": "Asia/Shanghai",
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout": {
+      "splits": [
+        {
+          "calories_total": 60,
+          "distance": 1021,
+          "heart_rate": {
+            "ending": 158
+          },
+          "stroke_rate": 20,
+          "time": 2839,
+          "type": "distance"
+        }
+      ]
+    },
+    "workout_type": "FixedDistanceSplits"
+  },
+  "schema_version": 1,
+  "stroke_status": "available"
+}

@@ -1,0 +1,89 @@
+{
+  "result": {
+    "calories_total": 561,
+    "comments": null,
+    "date": "2017-04-28 08:47:00",
+    "date_utc": null,
+    "distance": 10000,
+    "drag_factor": 163,
+    "heart_rate": {
+      "average": 134
+    },
+    "id": 29595014,
+    "metadata": {
+      "data": {
+        "client_version": "7.06.15",
+        "device": "x86_64",
+        "device_os": "osx",
+        "device_os_version": "10.12",
+        "firmware_version": "0",
+        "hr_type": null,
+        "other": null,
+        "pm_version": 0,
+        "serial_number": ""
+      }
+    },
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "Concept2 Utility",
+    "stroke_data": false,
+    "stroke_rate": 28,
+    "time": 28787,
+    "time_formatted": "47:58.7",
+    "timezone": null,
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout": {
+      "splits": [
+        {
+          "calories_total": 113,
+          "distance": 2000,
+          "heart_rate": {
+            "ending": 134
+          },
+          "stroke_rate": 29,
+          "time": 5676,
+          "type": "distance"
+        },
+        {
+          "calories_total": 113,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 28,
+          "time": 5677,
+          "type": "distance"
+        },
+        {
+          "calories_total": 112,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 28,
+          "time": 5798,
+          "type": "distance"
+        },
+        {
+          "calories_total": 111,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 28,
+          "time": 5859,
+          "type": "distance"
+        },
+        {
+          "calories_total": 112,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 29,
+          "time": 5776,
+          "type": "distance"
+        }
+      ]
+    },
+    "workout_type": "FixedDistanceSplits"
+  },
+  "schema_version": 1,
+  "stroke_status": "unavailable"
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A personal rowing logbook and progress toward 40,075 kilometers.">
+  <title>row</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e3450'/%3E%3Ccircle cx='16' cy='16' r='10' fill='none' stroke='white' stroke-width='2'/%3E%3Cpath d='M6 16h20M16 6c-6 6-6 14 0 20M16 6c6 6 6 14 0 20' fill='none' stroke='white' stroke-width='1.5'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><a href="#" class="brand">row</a><span id="sync-time" class="secondary">Loading logbook…</span></header>
+  <main id="main" tabindex="-1">
+    <div id="message" role="status" aria-live="polite">Loading activities…</div>
+    <section id="overview" hidden aria-labelledby="progress-title">
+      <div class="progress-top"><div><p class="eyebrow">Lifetime rowing</p><h1 id="progress-title"><span id="total-distance">—</span> <span class="unit">km</span></h1></div><p class="goal">of <span id="goal-distance">40,075</span> km</p></div>
+      <progress id="goal-progress" max="40075000" value="0" aria-label="Distance toward lifetime goal"></progress>
+      <div class="progress-bottom"><span id="percentage"></span><span id="remaining"></span><span id="activity-count"></span></div>
+      <p id="counting-policy" class="secondary policy"></p>
+      <section class="activity-section" aria-labelledby="activities-title">
+        <div class="section-top"><h2 id="activities-title">Activities</h2><label>Year <select id="year-filter"><option value="all">All years</option></select></label></div>
+        <div class="table-wrap"><table><caption class="sr-only">Rowing activities, most recent first</caption><thead><tr><th scope="col">Date</th><th scope="col">Distance</th><th scope="col">Duration</th><th scope="col">Pace / 500 m</th><th scope="col">Stroke rate</th></tr></thead><tbody id="activities"></tbody></table></div>
+        <nav class="pagination" aria-label="Activity pages"><button id="previous-page" type="button">Previous</button><span id="page-status" aria-live="polite"></span><button id="next-page" type="button">Next</button></nav>
+      </section>
+    </section>
+    <section id="activity-detail" hidden aria-labelledby="detail-title">
+      <a href="#" class="back-link">← All activities</a>
+      <div class="detail-heading"><div><p id="detail-date" class="eyebrow"></p><h1 id="detail-title" tabindex="-1"></h1><p id="detail-kind" class="secondary"></p></div><a id="verify-link" class="verify" target="_blank" rel="noopener noreferrer">Verify on Concept2 ↗</a></div>
+      <dl id="metrics" class="metrics"></dl>
+      <section id="parts-section" hidden><h2 id="parts-title">Splits</h2><p id="parts-note" class="notice" hidden>These source splits do not add up to the recorded workout total. Lifetime progress uses the workout total above.</p><div class="table-wrap"><table><caption class="sr-only">Recorded workout splits or intervals</caption><thead id="parts-head"></thead><tbody id="parts-body"></tbody></table></div></section>
+      <section id="targets-section" hidden><h2>Workout targets</h2><dl id="targets" class="metrics compact"></dl></section>
+      <section id="strokes-section"><div class="section-top"><h2>Stroke data</h2><label id="chart-control" hidden>Metric <select id="chart-metric"><option value="p">Pace / 500 m</option><option value="spm">Stroke rate</option><option value="hr">Heart rate</option></select></label></div><p id="stroke-message" class="secondary"></p><div id="chart" class="chart"></div><p id="chart-note" class="secondary" hidden>Elapsed time within each work interval. Separate lines indicate interval resets.</p></section>
+      <section id="comments-section" hidden><h2>Notes</h2><p id="comments"></p></section>
+      <section><h2>Recorded details</h2><dl id="extra-details" class="recorded-details"></dl></section>
+    </section>
+  </main>
+  <footer>Distance toward one journey around the world.</footer>
+</body>
+</html>

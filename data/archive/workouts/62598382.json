@@ -1,0 +1,58 @@
+{
+  "result": {
+    "calories_total": 45,
+    "comments": null,
+    "date": "2022-03-25 12:14:00",
+    "date_utc": "2022-03-25 04:14:00",
+    "distance": 750,
+    "drag_factor": 138,
+    "heart_rate": {
+      "average": 159
+    },
+    "id": 62598382,
+    "metadata": {
+      "data": {
+        "client_version": "V1.4.4 (0)",
+        "device": "iPhone 6 Plus",
+        "device_os": "iOS",
+        "device_os_version": "12.5.5",
+        "firmware_version": "32.0",
+        "hr_type": null,
+        "other": null,
+        "pm_version": 5,
+        "serial_number": "430117945"
+      }
+    },
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "ErgData iOS",
+    "stroke_count": 74,
+    "stroke_data": true,
+    "stroke_rate": 23,
+    "time": 1966,
+    "time_formatted": "3:16.6",
+    "timezone": "Asia/Shanghai",
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout": {
+      "splits": [
+        {
+          "calories_total": 45,
+          "distance": 751,
+          "heart_rate": {
+            "ending": 159
+          },
+          "stroke_rate": 23,
+          "time": 1966,
+          "type": "time"
+        }
+      ]
+    },
+    "workout_type": "JustRow"
+  },
+  "schema_version": 1,
+  "stroke_status": "available"
+}

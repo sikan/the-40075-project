@@ -1,0 +1,113 @@
+name: Sync Concept2 and deploy Pages
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      full:
+        description: Full reconciliation
+        required: false
+        default: false
+        type: boolean
+
+concurrency:
+  group: concept2-archive-and-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Run Python tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Check browser JavaScript syntax
+        run: node --check web/app.js
+
+      - name: Incrementally sync Concept2
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.full != true }}
+        env:
+          CONCEPT2_TOKEN: ${{ secrets.CONCEPT2_TOKEN }}
+        run: python3 scripts/tracker.py sync
+
+      - name: Fully reconcile Concept2
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.full == true }}
+        env:
+          CONCEPT2_TOKEN: ${{ secrets.CONCEPT2_TOKEN }}
+        run: python3 scripts/tracker.py sync --full
+
+      - name: Validate archive
+        run: python3 scripts/tracker.py audit
+
+      - name: Commit data-only changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add -- data/archive
+          if git diff --cached --quiet; then
+            echo "The archive has no changes to commit."
+            exit 0
+          fi
+          if git diff --cached --name-only | grep -Ev '^data/archive/' | grep -q .; then
+            echo "Refusing to commit a path outside data/archive/." >&2
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update Concept2 archive"
+          pushed=false
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              pushed=true
+              break
+            fi
+            git fetch origin main
+            git rebase origin/main
+          done
+          if [[ "$pushed" != true ]]; then
+            echo "Could not push the data-only archive commit." >&2
+            exit 1
+          fi
+
+      - name: Verify final checkout
+        run: |
+          python3 -m unittest discover -s tests -v
+          node --check web/app.js
+          python3 scripts/tracker.py audit
+
+      - name: Build static site
+        run: python3 scripts/tracker.py build
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

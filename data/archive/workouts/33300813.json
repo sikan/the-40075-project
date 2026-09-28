@@ -1,0 +1,24 @@
+{
+  "result": {
+    "comments": "unsaved (pm5 freezes)",
+    "date": "2018-04-11 00:00:00",
+    "date_utc": null,
+    "distance": 10000,
+    "id": 33300813,
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "Web",
+    "stroke_data": false,
+    "time": 27325,
+    "time_formatted": "45:32.5",
+    "timezone": null,
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": false,
+    "weight_class": "H",
+    "workout_type": "unknown"
+  },
+  "schema_version": 1,
+  "stroke_status": "unavailable"
+}

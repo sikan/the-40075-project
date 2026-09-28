@@ -1,0 +1,98 @@
+{
+  "result": {
+    "calories_total": 632,
+    "comments": null,
+    "date": "2021-10-08 13:16:00",
+    "date_utc": "2021-10-08 05:16:00",
+    "distance": 10000,
+    "drag_factor": 144,
+    "heart_rate": {
+      "average": 158
+    },
+    "id": 57596050,
+    "metadata": {
+      "data": {
+        "client_version": "V1.4.4 (0)",
+        "device": "iPhone 6 Plus",
+        "device_os": "iOS",
+        "device_os_version": "12.5.4",
+        "firmware_version": "31.0",
+        "hr_type": null,
+        "other": null,
+        "pm_version": 5,
+        "serial_number": "430117945"
+      }
+    },
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "ErgData iOS",
+    "stroke_count": 838,
+    "stroke_data": true,
+    "stroke_rate": 19,
+    "time": 25986,
+    "time_formatted": "43:18.6",
+    "timezone": "Asia/Shanghai",
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout": {
+      "splits": [
+        {
+          "calories_total": 127,
+          "distance": 2000,
+          "heart_rate": {
+            "ending": 153
+          },
+          "stroke_rate": 20,
+          "time": 4998,
+          "type": "distance"
+        },
+        {
+          "calories_total": 126,
+          "distance": 2000,
+          "heart_rate": {
+            "ending": 154
+          },
+          "stroke_rate": 19,
+          "time": 5034,
+          "type": "distance"
+        },
+        {
+          "calories_total": 126,
+          "distance": 2000,
+          "heart_rate": {
+            "ending": 157
+          },
+          "stroke_rate": 17,
+          "time": 5915,
+          "type": "distance"
+        },
+        {
+          "calories_total": 126,
+          "distance": 2000,
+          "heart_rate": {
+            "ending": 165
+          },
+          "stroke_rate": 20,
+          "time": 5035,
+          "type": "distance"
+        },
+        {
+          "calories_total": 127,
+          "distance": 2000,
+          "heart_rate": {
+            "ending": 162
+          },
+          "stroke_rate": 21,
+          "time": 5003,
+          "type": "distance"
+        }
+      ]
+    },
+    "workout_type": "FixedDistanceSplits"
+  },
+  "schema_version": 1,
+  "stroke_status": "available"
+}

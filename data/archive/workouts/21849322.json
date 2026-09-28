@@ -1,0 +1,24 @@
+{
+  "result": {
+    "comments": null,
+    "date": "2015-06-19 21:28:00",
+    "date_utc": null,
+    "distance": 11514,
+    "id": 21849322,
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "Concept2 Utility",
+    "stroke_data": false,
+    "time": 36106,
+    "time_formatted": "1:00:10.6",
+    "timezone": null,
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout_type": "JustRow"
+  },
+  "schema_version": 1,
+  "stroke_status": "unavailable"
+}

@@ -1,0 +1,9 @@
+.secrets/
+dist/
+data/archive/.lock
+data/archive/pending.json
+data/archive/.download-*/
+data/archive/**/*.tmp
+__pycache__/
+*.pyc
+.DS_Store

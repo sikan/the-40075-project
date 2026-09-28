@@ -1,0 +1,84 @@
+{
+  "result": {
+    "calories_total": 594,
+    "comments": null,
+    "date": "2018-01-19 09:27:00",
+    "date_utc": "2018-01-19 01:27:00",
+    "distance": 10000,
+    "drag_factor": 130,
+    "id": 32172674,
+    "metadata": {
+      "data": {
+        "client_version": "7.08.4",
+        "device": "x86_64",
+        "device_os": "osx",
+        "device_os_version": "10.13",
+        "firmware_version": "0",
+        "hr_type": null,
+        "other": null,
+        "pm_version": 0,
+        "serial_number": null
+      }
+    },
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "Concept2 Utility",
+    "stroke_data": false,
+    "stroke_rate": 23,
+    "time": 26787,
+    "time_formatted": "44:38.7",
+    "timezone": "Asia/Shanghai",
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout": {
+      "splits": [
+        {
+          "calories_total": 118,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 21,
+          "time": 5389,
+          "type": "distance"
+        },
+        {
+          "calories_total": 120,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 23,
+          "time": 5306,
+          "type": "distance"
+        },
+        {
+          "calories_total": 116,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 25,
+          "time": 5511,
+          "type": "distance"
+        },
+        {
+          "calories_total": 120,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 25,
+          "time": 5293,
+          "type": "distance"
+        },
+        {
+          "calories_total": 120,
+          "distance": 2000,
+          "heart_rate": {},
+          "stroke_rate": 25,
+          "time": 5288,
+          "type": "distance"
+        }
+      ]
+    },
+    "workout_type": "FixedDistanceSplits"
+  },
+  "schema_version": 1,
+  "stroke_status": "unavailable"
+}

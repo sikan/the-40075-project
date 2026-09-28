@@ -1,0 +1,117 @@
+{
+  "result": {
+    "calories_total": 627,
+    "comments": null,
+    "date": "2026-03-25 11:58:00",
+    "date_utc": "2026-03-25 03:58:00",
+    "distance": 10000,
+    "drag_factor": 141,
+    "heart_rate": {
+      "average": 159,
+      "ending": 170,
+      "max": 171,
+      "min": 82
+    },
+    "id": 114586890,
+    "metadata": {
+      "data": {
+        "client_version": "2.13.4(20260121.",
+        "device": "iPhone13,4",
+        "device_os": "iOS",
+        "device_os_version": "26.3.1",
+        "firmware_version": "39.037",
+        "hr_type": "ANT",
+        "other": "BLE PM Memory Data",
+        "pm_version": 5,
+        "serial_number": "430117945"
+      }
+    },
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "ErgData iOS",
+    "stroke_count": 979,
+    "stroke_data": true,
+    "stroke_rate": 21,
+    "time": 27531,
+    "time_formatted": "45:53.1",
+    "timezone": "Asia/Shanghai",
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout": {
+      "splits": [
+        {
+          "calories_total": 126,
+          "distance": 2000,
+          "heart_rate": {
+            "average": 143,
+            "ending": 157,
+            "max": 159,
+            "min": 77
+          },
+          "stroke_rate": 20,
+          "time": 5144,
+          "wattminutes_total": 0
+        },
+        {
+          "calories_total": 124,
+          "distance": 2000,
+          "heart_rate": {
+            "average": 158,
+            "ending": 158,
+            "max": 163,
+            "min": 153
+          },
+          "stroke_rate": 20,
+          "time": 5216,
+          "wattminutes_total": 0
+        },
+        {
+          "calories_total": 123,
+          "distance": 2000,
+          "heart_rate": {
+            "average": 145,
+            "ending": 153,
+            "max": 161,
+            "min": 115
+          },
+          "stroke_rate": 23,
+          "time": 6340,
+          "wattminutes_total": 0
+        },
+        {
+          "calories_total": 126,
+          "distance": 2000,
+          "heart_rate": {
+            "average": 161,
+            "ending": 160,
+            "max": 166,
+            "min": 153
+          },
+          "stroke_rate": 21,
+          "time": 5180,
+          "wattminutes_total": 0
+        },
+        {
+          "calories_total": 128,
+          "distance": 2000,
+          "heart_rate": {
+            "average": 157,
+            "ending": 170,
+            "max": 171,
+            "min": 122
+          },
+          "stroke_rate": 22,
+          "time": 5651,
+          "wattminutes_total": 0
+        }
+      ],
+      "targets": {}
+    },
+    "workout_type": "FixedDistanceSplits"
+  },
+  "schema_version": 1,
+  "stroke_status": "available"
+}

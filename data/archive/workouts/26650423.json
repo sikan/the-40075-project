@@ -1,0 +1,24 @@
+{
+  "result": {
+    "comments": null,
+    "date": "2016-05-31 23:30:00",
+    "date_utc": null,
+    "distance": 10000,
+    "id": 26650423,
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "Concept2 Utility",
+    "stroke_data": false,
+    "time": 28917,
+    "time_formatted": "48:11.7",
+    "timezone": null,
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout_type": "FixedDistanceSplits"
+  },
+  "schema_version": 1,
+  "stroke_status": "unavailable"
+}

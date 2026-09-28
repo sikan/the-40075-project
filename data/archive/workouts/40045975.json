@@ -1,0 +1,84 @@
+{
+  "result": {
+    "calories_total": 35,
+    "comments": null,
+    "date": "2019-10-19 12:06:00",
+    "date_utc": "2019-10-19 04:06:00",
+    "distance": 500,
+    "drag_factor": 144,
+    "id": 40045975,
+    "metadata": {
+      "data": {
+        "client_version": "7.09.00",
+        "device": "x86_64",
+        "device_os": "osx",
+        "device_os_version": "10.15",
+        "firmware_version": null,
+        "hr_type": null,
+        "other": "source_usb",
+        "pm_version": null,
+        "serial_number": null
+      }
+    },
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "Concept2 Utility",
+    "stroke_data": false,
+    "stroke_rate": 28,
+    "time": 1106,
+    "time_formatted": "1:50.6",
+    "timezone": "Asia/Shanghai",
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout": {
+      "splits": [
+        {
+          "calories_total": 7,
+          "distance": 100,
+          "heart_rate": {},
+          "stroke_rate": 29,
+          "time": 227,
+          "type": "distance"
+        },
+        {
+          "calories_total": 7,
+          "distance": 100,
+          "heart_rate": {},
+          "stroke_rate": 28,
+          "time": 218,
+          "type": "distance"
+        },
+        {
+          "calories_total": 7,
+          "distance": 100,
+          "heart_rate": {},
+          "stroke_rate": 30,
+          "time": 218,
+          "type": "distance"
+        },
+        {
+          "calories_total": 7,
+          "distance": 100,
+          "heart_rate": {},
+          "stroke_rate": 27,
+          "time": 219,
+          "type": "distance"
+        },
+        {
+          "calories_total": 7,
+          "distance": 100,
+          "heart_rate": {},
+          "stroke_rate": 29,
+          "time": 224,
+          "type": "distance"
+        }
+      ]
+    },
+    "workout_type": "FixedDistanceSplits"
+  },
+  "schema_version": 1,
+  "stroke_status": "unavailable"
+}

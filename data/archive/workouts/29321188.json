@@ -1,0 +1,24 @@
+{
+  "result": {
+    "comments": "src:garmin-fenix3",
+    "date": "2017-03-29 00:00:00",
+    "date_utc": null,
+    "distance": 10000,
+    "id": 29321188,
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "Web",
+    "stroke_data": false,
+    "time": 27680,
+    "time_formatted": "46:08.0",
+    "timezone": null,
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": false,
+    "weight_class": "H",
+    "workout_type": "unknown"
+  },
+  "schema_version": 1,
+  "stroke_status": "unavailable"
+}

@@ -1,0 +1,218 @@
+{
+  "result": {
+    "calories_total": 1024,
+    "comments": null,
+    "date": "2024-10-28 11:26:00",
+    "date_utc": "2024-10-28 03:26:00",
+    "distance": 17523,
+    "drag_factor": 152,
+    "heart_rate": {
+      "average": 154
+    },
+    "id": 93375812,
+    "metadata": {
+      "data": {
+        "client_version": "V1.4.4 (0)",
+        "device": "iPhone 6 Plus",
+        "device_os": "iOS",
+        "device_os_version": "12.5.7",
+        "firmware_version": "32.0",
+        "hr_type": null,
+        "other": null,
+        "pm_version": 5,
+        "serial_number": "430117945"
+      }
+    },
+    "privacy": "partners",
+    "ranked": false,
+    "real_time": null,
+    "source": "ErgData iOS",
+    "stroke_count": 1864,
+    "stroke_data": true,
+    "stroke_rate": 22,
+    "time": 49505,
+    "time_formatted": "1:22:30.5",
+    "timezone": "Asia/Shanghai",
+    "type": "rower",
+    "user_id": 1054035,
+    "verified": true,
+    "weight_class": "H",
+    "workout": {
+      "splits": [
+        {
+          "calories_total": 73,
+          "distance": 1181,
+          "heart_rate": {
+            "ending": 146
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 72,
+          "distance": 1172,
+          "heart_rate": {
+            "ending": 153
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 62,
+          "distance": 1084,
+          "heart_rate": {
+            "ending": 147
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 74,
+          "distance": 1185,
+          "heart_rate": {
+            "ending": 160
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 40,
+          "distance": 812,
+          "heart_rate": {
+            "ending": 112
+          },
+          "stroke_rate": 24,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 72,
+          "distance": 1165,
+          "heart_rate": {
+            "ending": 159
+          },
+          "stroke_rate": 22,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 51,
+          "distance": 958,
+          "heart_rate": {
+            "ending": 154
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 71,
+          "distance": 1164,
+          "heart_rate": {
+            "ending": 162
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 73,
+          "distance": 1179,
+          "heart_rate": {
+            "ending": 167
+          },
+          "stroke_rate": 24,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 47,
+          "distance": 909,
+          "heart_rate": {
+            "ending": 160
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 71,
+          "distance": 1158,
+          "heart_rate": {
+            "ending": 166
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 70,
+          "distance": 1149,
+          "heart_rate": {
+            "ending": 167
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 33,
+          "distance": 665,
+          "heart_rate": {
+            "ending": 126
+          },
+          "stroke_rate": 22,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 58,
+          "distance": 1036,
+          "heart_rate": {
+            "ending": 157
+          },
+          "stroke_rate": 21,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 70,
+          "distance": 1149,
+          "heart_rate": {
+            "ending": 167
+          },
+          "stroke_rate": 22,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 54,
+          "distance": 996,
+          "heart_rate": {
+            "ending": 164
+          },
+          "stroke_rate": 23,
+          "time": 3000,
+          "type": "time"
+        },
+        {
+          "calories_total": 33,
+          "distance": 560,
+          "heart_rate": {
+            "ending": 165
+          },
+          "stroke_rate": 22,
+          "time": 1505,
+          "type": "time"
+        }
+      ]
+    },
+    "workout_type": "JustRow"
+  },
+  "schema_version": 1,
+  "stroke_status": "available"
+}
