@@ -4,6 +4,7 @@ const present = value => value !== null && value !== undefined && value !== "";
 // Concept2 uses zero for some unrecorded physiological and stroke metrics.
 const positive = value => present(value) && Number.isFinite(Number(value)) && Number(value) > 0;
 const number = (value, digits = 0) => Number(value).toLocaleString(undefined, { maximumFractionDigits: digits });
+const fixedNumber = (value, digits) => Number(value).toLocaleString(undefined, { minimumFractionDigits: digits, maximumFractionDigits: digits });
 const setText = (id, value) => { $(id).textContent = value; };
 const duration = tenths => {
   if (!present(tenths) || !Number.isFinite(Number(tenths))) return "—";
@@ -52,7 +53,7 @@ async function getJSON(path) {
   if (!response.ok) throw new Error(`Could not load this part of the logbook (${response.status}).`);
   return response.json();
 }
-let indexData, currentPage = 0, currentStrokes = [], routeVersion = 0;
+let indexData, currentPage = 0, currentStrokes = [], routeVersion = 0, currentTooltipMark = null;
 const PAGE_SIZE = 50;
 function displayList() {
   const year = $("year-filter").value;
@@ -117,6 +118,135 @@ function svgElement(tag, attrs, text) {
   if (text !== undefined) node.textContent = text;
   return node;
 }
+function renderProgressGlobe(totalMeters, goalMeters) {
+  const svg = $("progress-globe");
+  const progress = Math.max(0, Math.min(1, totalMeters / goalMeters));
+  const cx = 210, cy = 207, radius = 143, compression = .34;
+  const tilt = 23.44 * Math.PI / 180;
+  const depthScale = Math.sqrt(1 - compression * compression);
+  const cosTilt = Math.cos(tilt), sinTilt = Math.sin(tilt);
+  const u = {x:cosTilt,y:sinTilt,z:0};
+  const v = {x:-compression*sinTilt,y:compression*cosTilt,z:depthScale};
+  const axis = {x:depthScale*sinTilt,y:-depthScale*cosTilt,z:compression};
+  const project = (latitude, longitude) => {
+    const sinLat=Math.sin(latitude), cosLat=Math.cos(latitude), cosLon=Math.cos(longitude), sinLon=Math.sin(longitude);
+    return {
+      x:cx+radius*(axis.x*sinLat+(u.x*cosLon+v.x*sinLon)*cosLat),
+      y:cy+radius*(axis.y*sinLat+(u.y*cosLon+v.y*sinLon)*cosLat),
+      depth:axis.z*sinLat+(u.z*cosLon+v.z*sinLon)*cosLat
+    };
+  };
+  const title=svgElement("title",{id:"globe-title"},"Lifetime rowing progress around Earth's equator");
+  const percentText=fixedNumber(progress*100,2)+"%";
+  const description=svgElement("desc",{id:"globe-description"},`${percentText} of the equatorial journey is complete. The dark arc is completed distance and the light arc is remaining distance.`);
+  const defs=svgElement("defs",{}), gradient=svgElement("radialGradient",{id:"progress-sphere",cx:"31%",cy:"24%",r:"79%"});
+  for(const [offset,color] of [["0%","#fbfcfa"],["48%","#e5eae5"],["80%","#d0d8d2"],["100%","#aebbb3"]]) gradient.append(svgElement("stop",{offset,"stop-color":color}));
+  const clip=svgElement("clipPath",{id:"progress-sphere-clip"}); clip.append(svgElement("circle",{cx,cy,r:radius-.5})); defs.append(gradient,clip);
+  svg.replaceChildren(title,description,defs);
+  svg.append(svgElement("ellipse",{class:"orb-shadow",cx:228,cy:365,rx:105,ry:10}));
+  const axisLength=radius*1.23;
+  svg.append(svgElement("line",{class:"orb-axis",x1:cx-axis.x*axisLength,y1:cy-axis.y*axisLength,x2:cx+axis.x*axisLength,y2:cy+axis.y*axisLength}));
+  svg.append(svgElement("circle",{class:"orb-haze",cx,cy,r:radius+2}));
+  svg.append(svgElement("circle",{class:"orb-sphere",cx,cy,r:radius,fill:"url(#progress-sphere)"}));
+  const grid=svgElement("g",{"clip-path":"url(#progress-sphere-clip)","aria-hidden":"true"}), curves=[], steps=120;
+  for(const degrees of [-60,-30,30,60]) {
+    const latitude=degrees*Math.PI/180, points=[];
+    for(let i=0;i<=steps;i++) points.push(project(latitude,i/steps*Math.PI*2));
+    curves.push(points);
+  }
+  for(let degrees=0;degrees<180;degrees+=30) {
+    const longitude=degrees*Math.PI/180;
+    const direction={x:u.x*Math.cos(longitude)+v.x*Math.sin(longitude),y:u.y*Math.cos(longitude)+v.y*Math.sin(longitude),z:u.z*Math.cos(longitude)+v.z*Math.sin(longitude)};
+    const points=[];
+    for(let i=0;i<=steps;i++) {
+      const angle=i/steps*Math.PI*2;
+      points.push({x:cx+radius*(axis.x*Math.sin(angle)+direction.x*Math.cos(angle)),y:cy+radius*(axis.y*Math.sin(angle)+direction.y*Math.cos(angle)),depth:axis.z*Math.sin(angle)+direction.z*Math.cos(angle)});
+    }
+    curves.push(points);
+  }
+  const pathByDepth=(points,front)=>{
+    let d="",drawing=false;
+    for(const point of points) {
+      if((point.depth>=0)===front) {d+=`${drawing?"L":"M"}${point.x.toFixed(2)} ${point.y.toFixed(2)}`;drawing=true;}
+      else drawing=false;
+    }
+    return d;
+  };
+  for(const front of [false,true]) for(const curve of curves) grid.append(svgElement("path",{class:`orb-grid ${front?"front":"back"}`,d:pathByDepth(curve,front)}));
+  svg.append(grid);
+  const leftGroup=svgElement("g",{"aria-hidden":"true"}), doneGroup=svgElement("g",{"aria-hidden":"true"});
+  const pointAt=fraction=>project(0,Math.PI/2-fraction*Math.PI*2), segments=720;
+  const addArc=(group,startFraction,endFraction,state,depthFraction)=>{
+    if(endFraction<=startFraction) return;
+    const start=pointAt(startFraction),end=pointAt(endFraction),middle=pointAt(depthFraction);
+    const depthPosition=Math.max(0,Math.min(1,(middle.depth/depthScale+1)/2));
+    const smoothDepth=depthPosition*depthPosition*(3-2*depthPosition);
+    group.append(svgElement("line",{class:`orb-segment ${state}`,x1:start.x.toFixed(2),y1:start.y.toFixed(2),x2:end.x.toFixed(2),y2:end.y.toFixed(2),"stroke-width":(3.5+2.25*smoothDepth).toFixed(3),opacity:(.43+.54*smoothDepth).toFixed(3)}));
+  };
+  for(let i=0;i<segments;i++) {
+    const start=i/segments,end=(i+1)/segments,extendedEnd=Math.min(1,(i+1.35)/segments),middle=(i+.5)/segments;
+    if(progress<=start) addArc(leftGroup,start,extendedEnd,"left",middle);
+    else if(progress>=end) addArc(doneGroup,start,extendedEnd,"done",middle);
+    else {
+      addArc(leftGroup,progress,extendedEnd,"left",middle);
+      addArc(doneGroup,start,progress,"done",middle);
+    }
+  }
+  svg.append(leftGroup,doneGroup);
+  const origin=pointAt(0),head=pointAt(progress);
+  svg.append(svgElement("circle",{class:"orb-origin",cx:origin.x,cy:origin.y,r:5.5}));
+  if(progress>0&&progress<1) svg.append(svgElement("circle",{class:"orb-head",cx:head.x,cy:head.y,r:4.5}));
+}
+function renderYearLines() {
+  const grouped=new Map();
+  for(const activity of indexData.activities) {
+    const year=activity.date.slice(0,4);
+    if(!grouped.has(year)) grouped.set(year,[]);
+    grouped.get(year).push(activity);
+  }
+  $("year-lines").replaceChildren();
+  for(const year of [...grouped.keys()].sort().reverse()) {
+    const rows=grouped.get(year).slice().sort((a,b)=>a.date.localeCompare(b.date)||a.id-b.id);
+    const total=rows.reduce((sum,row)=>sum+row.distance,0);
+    const section=document.createElement("section"),meta=document.createElement("div"),heading=document.createElement("h3"),stats=document.createElement("div"),rowCount=document.createElement("span"),distance=document.createElement("span"),marks=document.createElement("div");
+    section.className="year-row"; section.setAttribute("aria-labelledby",`year-${year}`);
+    meta.className="year-meta"; heading.className="year-label"; heading.id=`year-${year}`; heading.textContent=year;
+    stats.className="year-stats"; rowCount.textContent=`${number(rows.length)} rows`; distance.textContent=`${fixedNumber(total/1000,3)} km`; stats.append(rowCount,distance); meta.append(heading,stats);
+    marks.className="year-marks";
+    for(const row of rows) {
+      const units=Math.max(1,Math.round(row.distance/1000)),link=document.createElement("a");
+      link.className="workout-mark"; link.href=`#activity/${row.id}`; link.style.width=`${Math.max(4,units*2.1).toFixed(2)}px`;
+      link.dataset.date=dateLabel(row.date); link.dataset.distance=`${number(row.distance)} m`; link.dataset.duration=duration(row.time); link.dataset.pace=pace(row.time,row.distance); link.dataset.stroke=positive(row.stroke_rate)?`${number(row.stroke_rate)} spm`:"stroke rate not recorded";
+      link.setAttribute("aria-label",`${link.dataset.date}, ${link.dataset.distance}, ${link.dataset.duration}, ${link.dataset.pace} per 500 meters, ${link.dataset.stroke}`);
+      marks.append(link);
+    }
+    section.append(meta,marks); $("year-lines").append(section);
+  }
+}
+function hideArchiveTooltip() {
+  currentTooltipMark=null; $("archive-tooltip").hidden=true;
+}
+function showArchiveTooltip(mark) {
+  currentTooltipMark=mark;
+  setText("tooltip-date",mark.dataset.date); setText("tooltip-distance",mark.dataset.distance);
+  setText("tooltip-metrics",`${mark.dataset.duration} · ${mark.dataset.pace} / 500 m · ${mark.dataset.stroke}`);
+  const tooltip=$("archive-tooltip"),archive=$("archive"); tooltip.hidden=false; tooltip.classList.remove("below");
+  const archiveRect=archive.getBoundingClientRect(),markRect=mark.getBoundingClientRect(),tooltipWidth=tooltip.offsetWidth;
+  const idealLeft=markRect.left-archiveRect.left+markRect.width/2;
+  const left=Math.max(tooltipWidth/2+8,Math.min(archiveRect.width-tooltipWidth/2-8,idealLeft));
+  const top=markRect.top-archiveRect.top;
+  const below=top<tooltip.offsetHeight+12;
+  tooltip.classList.toggle("below",below); tooltip.style.left=`${left}px`; tooltip.style.top=`${below?markRect.bottom-archiveRect.top:top}px`;
+}
+function setupArchiveTooltip() {
+  const lines=$("year-lines"),markFrom=target=>target instanceof Element?target.closest(".workout-mark"):null;
+  lines.addEventListener("pointerover",event=>{const mark=markFrom(event.target);if(mark&&!mark.contains(event.relatedTarget))showArchiveTooltip(mark);});
+  lines.addEventListener("pointerout",event=>{const mark=markFrom(event.target);if(mark&&!mark.contains(event.relatedTarget))hideArchiveTooltip();});
+  lines.addEventListener("focusin",event=>{const mark=markFrom(event.target);if(mark)showArchiveTooltip(mark);});
+  lines.addEventListener("focusout",event=>{const mark=markFrom(event.target);if(mark&&!mark.contains(event.relatedTarget))hideArchiveTooltip();});
+  lines.addEventListener("click",hideArchiveTooltip);
+  window.addEventListener("resize",()=>{if(currentTooltipMark)showArchiveTooltip(currentTooltipMark);});
+}
 function renderChart() {
   $("chart").replaceChildren();
   const key = $("chart-metric").value;
@@ -143,7 +273,7 @@ function renderChart() {
   const svg = svgElement("svg", {viewBox:`0 0 ${width} ${height}`,role:"img","aria-label":`${words(key === "p" ? "pace" : key === "spm" ? "stroke rate" : "heart rate")} over workout time`});
   for (let i=0; i<=4; i++) {
     const y = minY+(maxY-minY)*i/4, py = yPixel(y);
-    svg.append(svgElement("line",{x1:left,x2:width-right,y1:py,y2:py,stroke:"#d8e1e8"}));
+    svg.append(svgElement("line",{x1:left,x2:width-right,y1:py,y2:py,stroke:"var(--rule)"}));
     svg.append(svgElement("text",{x:left-12,y:py+5,"text-anchor":"end"}, key === "p" ? duration(y*10) : number(y)));
     const x = maxX*i/4;
     svg.append(svgElement("text",{x:xPixel(x),y:height-14,"text-anchor":"middle"},duration(x*10)));
@@ -152,7 +282,7 @@ function renderChart() {
     // Only display points are decimated; the downloaded archive remains complete.
     const source = segments[i], step = Math.max(1,Math.ceil(source.length/1500));
     const sampled = source.filter((_,n) => n%step === 0 || n===source.length-1);
-    svg.append(svgElement("polyline",{points:sampled.map(([x,y])=>`${xPixel(x)},${yPixel(y)}`).join(" "),fill:"none",stroke:["#006a9c","#b26400","#59743c"][i%3],"stroke-width":2,"vector-effect":"non-scaling-stroke"}));
+    svg.append(svgElement("polyline",{points:sampled.map(([x,y])=>`${xPixel(x)},${yPixel(y)}`).join(" "),fill:"none",stroke:["var(--accent)","var(--ink)","var(--warning)"][i%3],"stroke-width":2,"vector-effect":"non-scaling-stroke"}));
   }
   $("chart").append(svg);
 }
@@ -207,8 +337,13 @@ async function displayActivity(id, version) {
 }
 async function route() {
   const version=++routeVersion;
-  $("activity-detail").hidden=true;
-  if (!location.hash || location.hash==="#") {$("message").hidden=true;$("overview").hidden=false;displayList();return;}
+  $("activity-detail").hidden=true; hideArchiveTooltip();
+  const homeTarget=!location.hash||location.hash==="#"||location.hash==="#journey"||location.hash==="#archive";
+  if (homeTarget) {
+    $("message").hidden=true;$("overview").hidden=false;displayList();
+    if(location.hash==="#journey"||location.hash==="#archive") requestAnimationFrame(()=>$(location.hash.slice(1)).scrollIntoView());
+    return;
+  }
   $("overview").hidden=true;$("message").hidden=false;setText("message","Loading activity…");
   const match=/^#activity\/(\d+)$/.exec(location.hash);
   if(!match || !indexData.activities.some(row=>String(row.id)===match[1])) {setText("message","Activity not found. Use the site title to return to all activities.");return;}
@@ -217,13 +352,13 @@ async function route() {
 async function start() {
   try {
     indexData=validateIndex(await getJSON("./data/index.json"));
-    document.title=indexData.title; document.querySelector(".brand").textContent=indexData.title;
+    document.title=indexData.title; document.querySelector(".brand-name").textContent=indexData.title;
     setText("sync-time",`Data updated ${new Date(indexData.last_successful_sync).toLocaleString()}`);
-    setText("total-distance",number(indexData.total_meters/1000,3));setText("goal-distance",number(indexData.goal_meters/1000));
-    $("goal-progress").max=indexData.goal_meters;$("goal-progress").value=Math.min(indexData.total_meters,indexData.goal_meters);
-    setText("percentage",number(indexData.total_meters/indexData.goal_meters*100,2)+"% complete");
-    setText("remaining",number(indexData.remaining_meters/1000,3)+" km remaining");setText("activity-count",number(indexData.activity_count)+" activities");
-    setText("counting-policy",`Includes ${indexData.rowing_types.map(words).join(", ")}${indexData.include_rest_distance?" and recorded rest distance":"; work distance only"}. Table distances show work distance.`);
+    setText("total-distance",fixedNumber(indexData.total_meters/1000,3));setText("goal-distance",number(indexData.goal_meters/1000));
+    setText("percentage",fixedNumber(indexData.total_meters/indexData.goal_meters*100,2)+"%");
+    setText("remaining",fixedNumber(indexData.remaining_meters/1000,3)+" km remaining");setText("activity-count",number(indexData.activity_count)+" recorded rows");
+    setText("counting-policy",`Goal progress includes ${indexData.rowing_types.map(words).join(", ")}${indexData.include_rest_distance?" and recorded rest distance":"; work distance only"}. Line lengths and yearly distances show work distance.`);
+    renderProgressGlobe(indexData.total_meters,indexData.goal_meters); renderYearLines(); setupArchiveTooltip();
     const years=[...new Set(indexData.activities.map(row=>row.date.slice(0,4)))].sort().reverse();
     for(const year of years) {const option=document.createElement("option");option.value=year;option.textContent=year;$("year-filter").append(option);}
     $("year-filter").addEventListener("change",()=>{currentPage=0;displayList();});
