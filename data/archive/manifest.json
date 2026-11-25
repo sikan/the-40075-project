@@ -1583,9 +1583,9 @@
     "123170487",
     "123194833"
   ],
-  "checkpoint": "2026-11-22T06:42:43Z",
-  "last_full_sync": "2026-10-26T04:42:58Z",
-  "last_successful_sync": "2026-11-22T06:42:44Z",
+  "checkpoint": "2026-11-25T08:27:22Z",
+  "last_full_sync": "2026-11-25T08:27:22Z",
+  "last_successful_sync": "2026-11-25T08:33:14Z",
   "retired_ids": [],
   "schema_version": 1,
   "user_id": 1054035
